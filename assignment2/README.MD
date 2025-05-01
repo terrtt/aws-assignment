@@ -15,13 +15,13 @@ You can assume that the script is running within an environment that has suffici
 
  ### solution:
 
-# step1 : i created a yaml file containig the cloud formation template that created a iam role ReadOnlyAccessrole-wibix ,this iam role can be assumed by ec2 instance,it attaches the manage aws polivies to the role and the output section gives you the role name and arn 
+step1 : i created a yaml file containig the cloud formation template that created a iam role ReadOnlyAccessrole-wibix ,this iam role can be assumed by ec2 instance,it attaches the manage aws polivies to the role and the output section gives you the role name and arn 
 
 then i upload this file to a public s3 bucket and apply the bucket policy to make the object publicaly accesible 
 
-# step2: i created a stcak using this the arn of my s3 bucket using aws console
+step2: i created a stcak using this the arn of my s3 bucket using aws console
 
-# step3: i launch a ec2 instance with suitable permissions and install all the dependencies to run the python script 
+step3: i launch a ec2 instance with suitable permissions and install all the dependencies to run the python script 
 
 ```bash
 python3 fetc.py --stack-name ReadOnlyStack
