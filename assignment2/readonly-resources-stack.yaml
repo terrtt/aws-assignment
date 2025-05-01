@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Stack to create IAM Role with ReadOnly access for EC2, S3, RDS, Lambda, CloudWatch, etc.
+
+Resources:
+  ReadOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: ReadOnlyAccessRole-Wibix
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AWSLambda_ReadOnlyAccess
+        - arn:aws:iam::aws:policy/AmazonRDSReadOnlyAccess
+        - arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess
+
+Outputs:
+  RoleName:
+    Description: IAM Role with ReadOnly Permissions
+    Value: !Ref ReadOnlyRole
+
+  RoleArn:
+    Description: Role ARN
+    Value: !GetAtt ReadOnlyRole.Arn
+   
+
+   
